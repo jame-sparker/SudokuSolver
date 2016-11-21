@@ -13,9 +13,14 @@ public class Tokens {
     public Tokens(){}
 
     public void insert(AbstractToken t) {
-
+        tokens.add(t);
     };
     public boolean hasNext() {
-        return index == tokens.size();
+        return index >= tokens.size() - 1;
     }
+
+    public AbstractToken next(){
+        return tokens.get(index++);
+    }
+
 }

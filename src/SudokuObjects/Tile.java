@@ -13,7 +13,7 @@ public class Tile {
     private Set<Integer> possibleValues;
 
     public Tile() {
-        this(-1);
+        this(-1, false);
         for (int i = 1; i <= 9; i++) {
             possibleValues.add(i);
         }
@@ -42,5 +42,10 @@ public class Tile {
 
     public void removePossible(Set<Integer> removeredNumbers) {
         possibleValues.removeAll(removeredNumbers);
+    }
+
+    @Override
+    public String toString (){
+        return finalized ? "" + value : " ";
     }
 }
