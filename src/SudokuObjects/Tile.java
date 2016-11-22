@@ -30,7 +30,6 @@ public class Tile {
         possibleValues = new TreeSet<>();
     }
 
-
     public boolean isFinalized() {
         return finalized;
     }
@@ -38,6 +37,22 @@ public class Tile {
     public void setValue(int v ){
         value = v;
         finalized = true;
+    }
+
+    public void checkTile() throws UnsolvablePuzzleException{
+        if (possibleValues.size() == 0){
+            throw new UnsolvablePuzzleException();
+        }
+        if (possibleValues.size() == 1) {
+            int firstValue = possibleValues.iterator().next();
+            setValue (firstValue);
+        }
+    }
+
+    public Set<Integer> getValue() {
+        Set<Integer> valueSet = new TreeSet<Integer>();
+        if(finalized) valueSet.add(value);
+        return valueSet;
     }
 
     public void removePossible(Set<Integer> removeredNumbers) {
