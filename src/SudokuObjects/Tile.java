@@ -55,9 +55,10 @@ public class Tile {
         return valueSet;
     }
 
-    public void removePossible(Set<Integer> removeredNumbers) {
-        possibleValues.removeAll(removeredNumbers);
+    public void updatePossibleValues (Set<Integer> impossibleValues){
+        possibleValues.removeAll(impossibleValues);
     }
+
 
     @Override
     public String toString (){

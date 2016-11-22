@@ -45,7 +45,27 @@ public class Solver {
     }
 
     public void checkLines(){
+        /*Update Row*/
+        for (int i = 1; i <= 9; i++){
+            Tile[] row = board.getRow(i);
+            Set<Integer> determined = getDeterminedValues(row);
+            updateLine(row, determined);
+        }
 
+        /*Update Column*/
+        for (int j = 1; j <= 9; j++){
+            Tile[] column = board.getColumn(j);
+            Set<Integer> determined = getDeterminedValues(column);
+            updateLine(column, determined);
+        }
+    }
+
+    public void updateLine(Tile[] line, Set<Integer> impossibleValues){
+        for (Tile t: line){
+            if (!t.isFinalized()) {
+                t.updatePossibleValues(impossibleValues);
+            }
+        }
     }
 
     public void checkBoxes(){
@@ -53,6 +73,9 @@ public class Solver {
             for (int j = 1; j <= 3; j++){
                 Tile[][] block = board.getBlock(i, j);
                 Set<Integer> determined = getDeterminedValues(block);
+                for (Tile[] row: block){
+                    updateLine(row, determined);
+                }
             }
         }
     }
