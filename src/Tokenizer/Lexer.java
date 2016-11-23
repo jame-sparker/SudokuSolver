@@ -10,7 +10,7 @@ public class Lexer {
     public static Tokens produceLexers(String inputString){
         Tokens tokens = new Tokens();
         for (char c : inputString.toCharArray()){
-            if (c < '9' && c > '0') {
+            if (c <= '9' && c >= '0') {
                 AbstractToken t = new NumberToken(Character.digit(c, 10));
                 tokens.insert(t);
             } else if (c == '[' || c == ']' || c == ','){
